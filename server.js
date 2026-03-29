@@ -341,17 +341,41 @@ async function initializeDatabase() {
     }
 }
 
-// Email Configuration (Resend SMTP)
-// Sign up at https://resend.com — verify your domain launchpoint-dm.com for best deliverability
-const transporter = nodemailer.createTransport({
-    host: 'smtp.resend.com',
-    port: 465,
-    secure: true,
-    auth: {
-        user: 'resend',
-        pass: process.env.RESEND_API_KEY
+// Email sending via Resend REST API (recommended over SMTP — avoids port/TLS issues)
+async function sendEmail(to, subject, html) {
+    if (!process.env.RESEND_API_KEY) {
+        console.log(`[EMAIL FALLBACK] To: ${to} | Subject: ${subject}`);
+        return { fallback: true };
     }
-});
+    const response = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            from: process.env.RESEND_FROM || 'LaunchPoint DM <onboarding@resend.dev>',
+            to: [to],
+            subject,
+            html
+        })
+    });
+    const data = await response.json();
+    if (!response.ok) {
+        throw new Error(`Resend error ${response.status}: ${data.message || data.name || JSON.stringify(data)}`);
+    }
+    return data;
+}
+
+// Phone normalization — convert any format to E.164 (+1XXXXXXXXXX for US)
+function normalizePhone(raw) {
+    if (!raw) return null;
+    const stripped = raw.replace(/[^\d+]/g, '');
+    if (stripped.startsWith('+')) return stripped;
+    if (stripped.length === 10) return '+1' + stripped;
+    if (stripped.length === 11 && stripped.startsWith('1')) return '+' + stripped;
+    return stripped; // best effort for international
+}
 
 // SMS Configuration (ClickSend)
 // Sign up at https://clicksend.com — simple REST, no SDK needed
@@ -1672,19 +1696,11 @@ async function sendApprovalEmail(to, fullName, username, tempPassword, workEmail
         <p style="color:#64748b;font-size:11px;margin-top:32px;border-top:1px solid #1e2d4a;padding-top:16px">LaunchPoint DM — Digital Marketing Platform</p>
     </div>`;
 
-    if (process.env.RESEND_API_KEY) {
-        try {
-            await transporter.sendMail({
-                from: process.env.RESEND_FROM || 'LaunchPoint DM <hello@launchpoint-dm.com>',
-                to,
-                subject: '✅ Your LaunchPoint DM Admin Access Has Been Approved',
-                html
-            });
-        } catch (e) {
-            console.error('Approval email error:', e.message);
-        }
-    } else {
-        console.log(`[APPROVAL EMAIL] To: ${to} | Username: ${username} | Password: ${tempPassword} | Work Email: ${workEmail}`);
+    try {
+        await sendEmail(to, '✅ Your LaunchPoint DM Admin Access Has Been Approved', html);
+        console.log(`[APPROVAL EMAIL] Sent to ${to}`);
+    } catch (e) {
+        console.error('Approval email error:', e.message);
     }
 }
 
@@ -1712,19 +1728,11 @@ async function sendRegistrationReceivedEmail(to, fullName) {
         <p style="color:#64748b;font-size:11px;margin-top:32px;border-top:1px solid #1e2d4a;padding-top:16px">LaunchPoint DM — Digital Marketing Platform</p>
     </div>`;
 
-    if (process.env.RESEND_API_KEY) {
-        try {
-            await transporter.sendMail({
-                from: process.env.RESEND_FROM || 'LaunchPoint DM <hello@launchpoint-dm.com>',
-                to,
-                subject: '📬 Your LaunchPoint DM Admin Request Has Been Received',
-                html
-            });
-        } catch (e) {
-            console.error('Registration received email error:', e.message);
-        }
-    } else {
-        console.log(`[REGISTRATION EMAIL] To: ${to} | Name: ${fullName}`);
+    try {
+        await sendEmail(to, '📬 Your LaunchPoint DM Admin Request Has Been Received', html);
+        console.log(`[REGISTRATION EMAIL] Sent to ${to}`);
+    } catch (e) {
+        console.error('Registration received email error:', e.message);
     }
 }
 
@@ -1742,17 +1750,11 @@ async function sendRejectionEmail(to, fullName, reason) {
         <p>— LaunchPoint DM</p>
     </div>`;
 
-    if (process.env.RESEND_API_KEY) {
-        try {
-            await transporter.sendMail({
-                from: process.env.RESEND_FROM || 'LaunchPoint DM <hello@launchpoint-dm.com>',
-                to,
-                subject: 'LaunchPoint DM Admin Access Request Update',
-                html
-            });
-        } catch (e) {
-            console.error('Rejection email error:', e.message);
-        }
+    try {
+        await sendEmail(to, 'LaunchPoint DM Admin Access Request Update', html);
+        console.log(`[REJECTION EMAIL] Sent to ${to}`);
+    } catch (e) {
+        console.error('Rejection email error:', e.message);
     }
 }
 
@@ -1827,7 +1829,7 @@ app.post('/api/admin/register',
             // Send SMS confirmation to the registrant if they provided a phone number
             if (phone) {
                 try {
-                    await clickSendSms(phone.replace(/[^\d+]/g, ''), `Hi ${fullName.split(' ')[0]}, your LaunchPoint DM admin access request has been received. We will review it and notify you by email and text. — LaunchPoint DM`);
+                    await clickSendSms(normalizePhone(phone), `Hi ${fullName.split(' ')[0]}, your LaunchPoint DM admin access request has been received. We will review it and notify you by email and text. — LaunchPoint DM`);
                 } catch (smsErr) {
                     console.error('Registrant SMS confirmation error:', smsErr.message);
                 }
@@ -1890,7 +1892,7 @@ app.post('/api/superadmin/registrations/:id/approve', authenticateSuperAdmin, as
         // SMS the applicant if they provided a phone number
         if (phone) {
             try {
-                await clickSendSms(phone.replace(/[^\d+]/g, ''), `Hi ${full_name.split(' ')[0]}, your LaunchPoint DM admin access has been APPROVED! Check your email (${email}) for your login credentials. — LaunchPoint DM`);
+                await clickSendSms(normalizePhone(phone), `Hi ${full_name.split(' ')[0]}, your LaunchPoint DM admin access has been APPROVED! Check your email (${email}) for your login credentials. — LaunchPoint DM`);
             } catch (smsErr) {
                 console.error('Approval SMS to applicant error:', smsErr.message);
             }
@@ -1923,7 +1925,7 @@ app.post('/api/superadmin/registrations/:id/reject', authenticateSuperAdmin, [
         // SMS the applicant if they provided a phone number
         if (reg.rows[0].phone) {
             try {
-                await clickSendSms(reg.rows[0].phone.replace(/[^\d+]/g, ''), `Hi ${reg.rows[0].full_name.split(' ')[0]}, your LaunchPoint DM admin access request was not approved at this time. Please check your email for details. — LaunchPoint DM`);
+                await clickSendSms(normalizePhone(reg.rows[0].phone), `Hi ${reg.rows[0].full_name.split(' ')[0]}, your LaunchPoint DM admin access request was not approved at this time. Please check your email for details. — LaunchPoint DM`);
             } catch (smsErr) {
                 console.error('Rejection SMS to applicant error:', smsErr.message);
             }
