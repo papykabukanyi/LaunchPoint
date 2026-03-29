@@ -1967,7 +1967,7 @@ app.get('/api/superadmin/leads', authenticateSuperAdmin, async (req, res) => {
         const [leadsResult, countResult, adminsResult] = await Promise.all([
             pool.query(
                 `SELECT cs.id, cs.name, cs.email, cs.phone, cs.status, cs.assigned_to,
-                        cs.submission_date, cs.service_interest, cs.source_url
+                        cs.submission_date, cs.interest AS service_interest, cs.source_website AS source_url
                  FROM contact_submissions cs
                  ${where}
                  ORDER BY cs.submission_date DESC
