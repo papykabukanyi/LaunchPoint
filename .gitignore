@@ -18,6 +18,9 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 
+# SQLite databases
+*.db
+
 # VS Code local history (contains BOM files that break Nixpacks)
 .history/
 
