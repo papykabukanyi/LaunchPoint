@@ -18,6 +18,9 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 
+# VS Code local history (contains BOM files that break Nixpacks)
+.history/
+
 # Editor
 .vscode/settings.json
 .idea/

@@ -1,4 +1,4 @@
-﻿require('dotenv').config();
+require('dotenv').config();
 const { Pool } = require('pg');
 const p = new Pool({ connectionString: process.env.DATABASE_URL, ssl: false });
 Promise.all([
