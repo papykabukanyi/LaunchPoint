@@ -10,7 +10,6 @@
     "build": "vite build",
     "preview": "vite preview",
     "setup": "node setup.js",
-    "railway:sync": "node scripts/sync-railway.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
