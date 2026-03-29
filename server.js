@@ -108,29 +108,40 @@ const upload = multer({
 });
 
 // PostgreSQL connection pool
-// Normalize postgresql:// -> postgres:// for pg-connection-string compatibility
-const rawDbUrl = process.env.DATABASE_URL || '';
-const dbUrl = rawDbUrl.replace(/^postgresql:\/\//, 'postgres://');
-
-const pool = new Pool(
-    dbUrl
-        ? { connectionString: dbUrl, ssl: { rejectUnauthorized: false } }
-        : {
-            host: process.env.PGHOST || 'localhost',
-            port: parseInt(process.env.PGPORT || '5432'),
-            database: process.env.PGDATABASE || 'blue_ocean_strategies',
-            user: process.env.PGUSER || 'postgres',
-            password: process.env.PGPASSWORD || ''
+// Parse DATABASE_URL manually to avoid pg-connection-string throwing on bad URLs
+function buildPoolConfig() {
+    const rawUrl = process.env.DATABASE_URL || '';
+    if (rawUrl) {
+        try {
+            const url = new URL(rawUrl.replace(/^postgresql:\/\//, 'postgres://'));
+            return {
+                host: url.hostname,
+                port: parseInt(url.port) || 5432,
+                database: url.pathname.slice(1),
+                user: decodeURIComponent(url.username),
+                password: decodeURIComponent(url.password),
+                ssl: { rejectUnauthorized: false }
+            };
+        } catch (e) {
+            console.error('⚠️  DATABASE_URL is set but could not be parsed:', e.message);
+            console.error('⚠️  Go to Railway → your service → Variables and set DATABASE_URL to the Internal URL from your Postgres service.');
         }
-);
+    } else {
+        console.warn('⚠️  DATABASE_URL is not set. Set it in Railway → your service → Variables.');
+    }
+    // Fallback to individual PG* env vars (pg reads these automatically)
+    return {};
+}
+
+const pool = new Pool(buildPoolConfig());
 
 pool.connect().then(client => {
-    console.log('Connected to PostgreSQL database.');
+    console.log('✅ Connected to PostgreSQL database.');
     client.release();
     initializeDatabase();
 }).catch(err => {
-    console.error('PostgreSQL connection error:', err.message);
-    console.error('Make sure DATABASE_URL is set in Railway environment variables.');
+    console.error('❌ PostgreSQL connection error:', err.message);
+    console.error('   Set DATABASE_URL in Railway → your service → Variables tab.');
 });
 
 // Initialize Database Tables (PostgreSQL)
