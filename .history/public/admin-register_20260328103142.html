@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Admin Access — Blue Ocean Strategies</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --ocean-deep:    #080e1c;
+            --surface:       #111d35;
+            --surface2:      #162040;
+            --ocean-primary: #1a3a6b;
+            --ocean-bright:  #4db8ff;
+            --teal:          #1de9b6;
+            --border:        #1e2d4a;
+            --text-primary:  #e2e8f0;
+            --text-secondary:#94a3b8;
+            --danger:        #e74c3c;
+            --success:       #2ecc71;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: radial-gradient(ellipse at 30% 50%, rgba(26,58,107,.4) 0%, transparent 70%),
+                        radial-gradient(ellipse at 70% 20%, rgba(29,233,182,.06) 0%, transparent 60%),
+                        var(--ocean-deep);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            padding: 32px 16px;
+        }
+
+        .card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 20px; padding: 48px 44px; width: 100%; max-width: 500px;
+            box-shadow: 0 24px 80px rgba(0,0,0,.5);
+        }
+
+        .logo { text-align: center; margin-bottom: 36px; }
+        .logo-icon { width: 68px; height: 68px; background: linear-gradient(135deg, var(--ocean-primary), var(--teal)); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 30px; margin: 0 auto 16px; }
+        .logo h1 { font-size: 22px; font-weight: 700; }
+        .logo p { font-size: 13px; color: var(--text-secondary); margin-top: 6px; line-height: 1.5; }
+
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; font-size: 12px; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; }
+        .form-group label .req { color: var(--danger); margin-left: 2px; }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%; background: var(--surface2); border: 1px solid var(--border);
+            border-radius: 10px; padding: 12px 14px; color: var(--text-primary);
+            font-size: 14px; outline: none; transition: border-color .2s; font-family: inherit;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus { border-color: var(--ocean-bright); }
+        .form-group textarea { resize: vertical; }
+        .form-group .hint { font-size: 11px; color: var(--text-secondary); margin-top: 5px; }
+
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 20px; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: all .2s; text-decoration: none; }
+        .btn-full { width: 100%; justify-content: center; }
+        .btn-primary { background: linear-gradient(135deg, var(--ocean-primary), #2563eb); color: #fff; }
+        .btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+        .btn-primary:disabled { opacity: .6; transform: none; cursor: not-allowed; }
+
+        .alert { border-radius: 10px; padding: 14px 16px; font-size: 13px; margin-bottom: 20px; display: none; }
+        .alert-error { background: rgba(231,76,60,.1); border: 1px solid rgba(231,76,60,.4); color: var(--danger); }
+        .alert-success { background: rgba(46,204,113,.08); border: 1px solid rgba(46,204,113,.3); color: var(--success); }
+
+        .success-state { display: none; text-align: center; }
+        .success-icon { font-size: 56px; margin-bottom: 20px; }
+        .success-state h2 { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+        .success-state p { color: var(--text-secondary); line-height: 1.7; font-size: 14px; }
+
+        .divider { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+
+        .back-link { display: block; text-align: center; margin-top: 20px; font-size: 13px; color: var(--text-secondary); }
+        .back-link a { color: var(--ocean-bright); text-decoration: none; }
+        .back-link a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<div class="card">
+
+    <!-- Logo -->
+    <div class="logo">
+        <div class="logo-icon">🌊</div>
+        <h1>Blue Ocean Strategies</h1>
+        <p>Request access to the admin portal.<br>Your request will be reviewed by the Super Admin.</p>
+    </div>
+
+    <!-- Alerts -->
+    <div class="alert alert-error" id="alertError"></div>
+
+    <!-- Form -->
+    <div id="formState">
+        <form id="registerForm">
+            <div class="form-group">
+                <label>Full Name <span class="req">*</span></label>
+                <input type="text" id="fullName" placeholder="e.g. Jane Smith" autocomplete="name" required>
+            </div>
+            <div class="form-group">
+                <label>Email Address <span class="req">*</span></label>
+                <input type="email" id="email" placeholder="jane@example.com" autocomplete="email" required>
+                <div class="hint">Your approved credentials will be sent to this email.</div>
+            </div>
+            <div class="form-group">
+                <label>Organization / Campaign</label>
+                <input type="text" id="organization" placeholder="e.g. Johnson for Mayor 2026">
+            </div>
+            <div class="form-group">
+                <label>Why do you need admin access?</label>
+                <textarea id="reason" rows="3" placeholder="Briefly describe your role and why you need access..."></textarea>
+            </div>
+
+            <hr class="divider">
+
+            <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
+                <i class="fas fa-paper-plane"></i>
+                <span>Submit Request</span>
+            </button>
+        </form>
+
+        <p class="back-link">Already have an account? <a href="/admin">Sign In</a></p>
+    </div>
+
+    <!-- Success state -->
+    <div class="success-state" id="successState">
+        <div class="success-icon">📬</div>
+        <h2>Request Submitted!</h2>
+        <p>
+            Your request has been sent to the Super Admin for review.<br><br>
+            Once approved, you will receive an email with your unique username and temporary password.<br><br>
+            <strong>Please check your inbox (and spam folder).</strong>
+        </p>
+        <br>
+        <a href="/admin" class="btn btn-primary" style="display:inline-flex;margin:0 auto">
+            <i class="fas fa-arrow-left"></i> Back to Login
+        </a>
+    </div>
+
+</div>
+
+<script>
+document.getElementById('registerForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const errEl = document.getElementById('alertError');
+    errEl.style.display = 'none';
+
+    const fullName = document.getElementById('fullName').value.trim();
+    const email    = document.getElementById('email').value.trim();
+    const org      = document.getElementById('organization').value.trim();
+    const reason   = document.getElementById('reason').value.trim();
+
+    if (!fullName || !email) {
+        errEl.textContent = 'Full name and email are required.';
+        errEl.style.display = 'block';
+        return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+
+    try {
+        const res = await fetch('/api/admin/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ fullName, email, organization: org || undefined, reason: reason || undefined })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || data.errors?.[0]?.msg || 'Submission failed');
+        // Show success
+        document.getElementById('formState').style.display = 'none';
+        document.getElementById('successState').style.display = 'block';
+    } catch (err) {
+        errEl.textContent = err.message;
+        errEl.style.display = 'block';
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Request';
+    }
+});
+</script>
+</body>
+</html>

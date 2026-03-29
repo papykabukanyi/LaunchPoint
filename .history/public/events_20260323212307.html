@@ -1,0 +1,1317 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events & Training | Blue Ocean Strategies</title>
+    <meta name="description" content="Join Blue Ocean Strategies events, workshops, and training sessions to sharpen your campaign skills and connect with political marketing professionals.">
+
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Font Awesome 6.5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- AOS Animate on Scroll -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Web Manifest -->
+    <link rel="manifest" href="assets/site.webmanifest">
+
+    <style>
+        :root {
+            --bos-navy:   #0d2a52;
+            --bos-blue:   #1a4b8c;
+            --bos-accent: #e63946;
+            --bos-gold:   #f4a832;
+            --bos-light:  #f0f4f9;
+            --bos-text:   #1e293b;
+            --bos-muted:  #64748b;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--bos-text);
+            background: #fff;
+            overflow-x: hidden;
+        }
+
+        /* ─── NAVBAR ─── */
+        .navbar-bos {
+            background: var(--bos-navy) !important;
+            padding: 1rem 0;
+            transition: box-shadow .3s;
+        }
+        .navbar-bos.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,.18); }
+        .navbar-bos .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #fff !important;
+            letter-spacing: -.3px;
+        }
+        .navbar-bos .navbar-brand i { color: var(--bos-gold); margin-right: .4rem; }
+        .navbar-bos .nav-link {
+            color: rgba(255,255,255,.82) !important;
+            font-weight: 500;
+            font-size: .95rem;
+            padding: .45rem .85rem !important;
+            border-radius: 6px;
+            transition: background .2s, color .2s;
+        }
+        .navbar-bos .nav-link:hover { background: rgba(255,255,255,.08); color: #fff !important; }
+        .navbar-bos .nav-link.active { color: var(--bos-gold) !important; font-weight: 600; }
+        .btn-nav-cta {
+            background: var(--bos-gold);
+            color: var(--bos-navy) !important;
+            font-weight: 700 !important;
+            border-radius: 50px !important;
+            padding: .45rem 1.3rem !important;
+            font-size: .9rem !important;
+            transition: filter .2s, transform .2s;
+        }
+        .btn-nav-cta:hover { filter: brightness(1.08); transform: translateY(-1px); }
+        .navbar-toggler { border: 1.5px solid rgba(255,255,255,.35); }
+        .navbar-toggler-icon { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); }
+
+        /* ─── HERO ─── */
+        .hero-events {
+            background: linear-gradient(135deg, var(--bos-navy) 0%, var(--bos-blue) 55%, #2563eb 100%);
+            padding: 110px 0 80px;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+        }
+        .hero-events::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(255,255,255,.07) 1px, transparent 1px);
+            background-size: 28px 28px;
+            animation: dotDrift 18s linear infinite;
+        }
+        @keyframes dotDrift { from { background-position: 0 0; } to { background-position: 160px 160px; } }
+        .hero-events .badge-pill {
+            background: rgba(244,168,50,.18);
+            border: 1px solid rgba(244,168,50,.45);
+            color: var(--bos-gold);
+            font-size: .8rem;
+            font-weight: 600;
+            letter-spacing: .08em;
+            padding: .45rem 1.1rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 1.1rem;
+        }
+        .hero-events h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.18;
+            margin-bottom: 1.2rem;
+        }
+        .hero-events .lead {
+            font-size: 1.12rem;
+            color: rgba(255,255,255,.82);
+            line-height: 1.7;
+            max-width: 520px;
+        }
+        .stat-badge {
+            background: rgba(255,255,255,.1);
+            border: 1px solid rgba(255,255,255,.18);
+            border-radius: 14px;
+            padding: 1rem 1.25rem;
+            text-align: center;
+            backdrop-filter: blur(4px);
+        }
+        .stat-badge .stat-num {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--bos-gold);
+            line-height: 1;
+        }
+        .stat-badge .stat-lbl {
+            font-size: .78rem;
+            color: rgba(255,255,255,.72);
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            margin-top: .3rem;
+        }
+
+        /* ─── SECTIONS ─── */
+        .section-label {
+            display: inline-block;
+            color: var(--bos-accent);
+            font-weight: 700;
+            font-size: .78rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            margin-bottom: .6rem;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.65rem, 3.5vw, 2.3rem);
+            font-weight: 700;
+            color: var(--bos-navy);
+            line-height: 1.25;
+            margin-bottom: 1rem;
+        }
+        section { padding: 80px 0; }
+        .bg-bos-light { background: var(--bos-light); }
+        .bg-bos-navy  { background: var(--bos-navy); }
+
+        /* ─── CATEGORY CARDS ─── */
+        .category-card {
+            background: #fff;
+            border: none;
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            height: 100%;
+            box-shadow: 0 4px 24px rgba(13,42,82,.07);
+            transition: transform .25s, box-shadow .25s;
+            cursor: pointer;
+            border-top: 4px solid transparent;
+        }
+        .category-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(13,42,82,.13);
+            border-top-color: var(--bos-accent);
+        }
+        .category-card.active-cat { border-top-color: var(--bos-gold); }
+        .cat-icon-wrap {
+            width: 64px; height: 64px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--bos-navy), var(--bos-blue));
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 1.2rem;
+        }
+        .cat-icon-wrap i { color: #fff; font-size: 1.55rem; }
+        .category-card h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--bos-navy);
+            margin-bottom: .5rem;
+        }
+        .category-card p { color: var(--bos-muted); font-size: .93rem; line-height: 1.6; margin-bottom: 1rem; }
+        .cat-stats span {
+            background: var(--bos-light);
+            border-radius: 50px;
+            font-size: .77rem;
+            font-weight: 600;
+            padding: .25rem .8rem;
+            color: var(--bos-blue);
+            margin-right: .4rem;
+        }
+
+        /* ─── FILTER PILLS ─── */
+        .filter-pills { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 2.2rem; }
+        .filter-pill {
+            background: #fff;
+            border: 1.5px solid #d1d9e6;
+            color: var(--bos-text);
+            border-radius: 50px;
+            padding: .4rem 1.1rem;
+            font-size: .88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background .2s, border-color .2s, color .2s;
+        }
+        .filter-pill:hover { border-color: var(--bos-blue); color: var(--bos-blue); }
+        .filter-pill.active {
+            background: var(--bos-navy);
+            border-color: var(--bos-navy);
+            color: #fff;
+        }
+
+        /* ─── EVENT CARDS ─── */
+        .event-card-bos {
+            background: #fff;
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(13,42,82,.07);
+            overflow: hidden;
+            transition: transform .25s, box-shadow .25s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .event-card-bos:hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(13,42,82,.14); }
+        .event-card-bos.featured { border: 2px solid var(--bos-accent); }
+        .event-card-header {
+            background: linear-gradient(135deg, var(--bos-navy), var(--bos-blue));
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .event-card-bos.featured .event-card-header {
+            background: linear-gradient(135deg, var(--bos-accent) 0%, #b91c1c 100%);
+        }
+        .event-date-badge {
+            background: rgba(255,255,255,.18);
+            border-radius: 10px;
+            padding: .55rem .9rem;
+            text-align: center;
+            min-width: 60px;
+        }
+        .event-date-badge .month { font-size: .7rem; font-weight: 700; text-transform: uppercase; color: rgba(255,255,255,.8); letter-spacing: .1em; }
+        .event-date-badge .day   { font-size: 1.7rem; font-weight: 800; color: #fff; line-height: 1.1; }
+        .event-type-pill {
+            background: rgba(255,255,255,.2);
+            border-radius: 50px;
+            font-size: .75rem;
+            font-weight: 700;
+            padding: .3rem .9rem;
+            color: #fff;
+        }
+        .featured-badge {
+            background: var(--bos-gold);
+            color: var(--bos-navy);
+            border-radius: 50px;
+            font-size: .72rem;
+            font-weight: 800;
+            padding: .25rem .8rem;
+            letter-spacing: .05em;
+        }
+        .event-card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+        .event-card-body h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--bos-navy);
+            font-size: 1.05rem;
+            margin-bottom: .6rem;
+            line-height: 1.35;
+        }
+        .event-card-body p { color: var(--bos-muted); font-size: .9rem; line-height: 1.6; flex: 1; }
+        .event-detail-row { display: flex; align-items: center; gap: .5rem; color: var(--bos-muted); font-size: .83rem; margin-bottom: .35rem; }
+        .event-detail-row i { color: var(--bos-blue); width: 14px; text-align: center; }
+        .event-price-tag { font-size: 1.5rem; font-weight: 800; color: var(--bos-navy); }
+        .event-price-original { text-decoration: line-through; color: var(--bos-muted); font-size: .9rem; }
+        .event-free { color: #16a34a; font-weight: 800; font-size: 1.2rem; }
+        .event-savings { background: #d1fae5; color: #065f46; border-radius: 50px; font-size: .75rem; font-weight: 700; padding: .2rem .6rem; }
+        .btn-register {
+            background: var(--bos-navy);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: .65rem 1.4rem;
+            font-weight: 700;
+            font-size: .9rem;
+            width: 100%;
+            transition: background .2s, transform .15s;
+            cursor: pointer;
+        }
+        .btn-register:hover { background: var(--bos-blue); transform: translateY(-1px); }
+        .btn-register.outline {
+            background: transparent;
+            border: 2px solid var(--bos-navy);
+            color: var(--bos-navy);
+        }
+        .btn-register.outline:hover { background: var(--bos-navy); color: #fff; }
+        .btn-register.featured-btn { background: var(--bos-accent); }
+        .btn-register.featured-btn:hover { background: #c1121f; }
+
+        /* ─── SUCCESS STORIES ─── */
+        .story-card {
+            background: #fff;
+            border: none;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(13,42,82,.07);
+            height: 100%;
+            transition: transform .25s, box-shadow .25s;
+        }
+        .story-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(13,42,82,.12); }
+        .story-img-placeholder {
+            height: 180px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem;
+            color: rgba(255,255,255,.7);
+        }
+        .story-card .card-body { padding: 1.4rem; }
+        .story-card h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--bos-navy);
+            line-height: 1.35;
+            margin-bottom: .5rem;
+        }
+        .metric-badge {
+            background: var(--bos-light);
+            color: var(--bos-navy);
+            font-weight: 700;
+            font-size: .78rem;
+            border-radius: 50px;
+            padding: .25rem .8rem;
+        }
+        .event-tag {
+            background: rgba(230,57,70,.1);
+            color: var(--bos-accent);
+            font-weight: 600;
+            font-size: .78rem;
+            border-radius: 50px;
+            padding: .25rem .8rem;
+        }
+
+        /* ─── PROCESS (HOW IT WORKS) ─── */
+        .process-step { text-align: center; }
+        .process-num {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            background: var(--bos-gold);
+            color: var(--bos-navy);
+            font-size: 1.45rem;
+            font-weight: 800;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1rem;
+        }
+        .process-step h6 { font-family: 'Playfair Display', serif; font-weight: 700; color: #fff; margin-bottom: .4rem; }
+        .process-step p  { color: rgba(255,255,255,.72); font-size: .88rem; line-height: 1.6; }
+
+        /* ─── FORM ─── */
+        .bos-form label { font-weight: 600; font-size: .88rem; color: var(--bos-text); margin-bottom: .35rem; }
+        .bos-form .form-control, .bos-form .form-select {
+            border: 1.5px solid #d1d9e6;
+            border-radius: 8px;
+            padding: .7rem .95rem;
+            font-size: .92rem;
+            transition: border-color .2s, box-shadow .2s;
+        }
+        .bos-form .form-control:focus, .bos-form .form-select:focus {
+            border-color: var(--bos-blue);
+            box-shadow: 0 0 0 3px rgba(26,75,140,.12);
+        }
+        .btn-bos-primary {
+            background: var(--bos-navy);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: .75rem 2rem;
+            font-weight: 700;
+            font-size: .95rem;
+            transition: background .2s, transform .15s;
+        }
+        .btn-bos-primary:hover { background: var(--bos-blue); transform: translateY(-1px); color: #fff; }
+        .btn-bos-accent { background: var(--bos-accent); }
+        .btn-bos-accent:hover { background: #c1121f; }
+
+        /* ─── CTA BANNER ─── */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--bos-accent) 0%, #b91c1c 100%);
+            border-radius: 20px;
+            padding: 3.5rem 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-banner::after {
+            content: "";
+            position: absolute;
+            right: -60px; top: -60px;
+            width: 260px; height: 260px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.07);
+        }
+        .cta-banner h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: .7rem;
+        }
+        .cta-banner p { color: rgba(255,255,255,.85); font-size: 1.02rem; margin-bottom: 0; }
+        .btn-cta-white {
+            background: #fff;
+            color: var(--bos-accent);
+            font-weight: 800;
+            border: none;
+            border-radius: 50px;
+            padding: .8rem 2.2rem;
+            font-size: .97rem;
+            transition: transform .2s, box-shadow .2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-cta-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.18); color: var(--bos-accent); }
+
+        /* ─── NEWSLETTER STRIPE ─── */
+        .newsletter-stripe {
+            background: var(--bos-light);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+        }
+        .newsletter-stripe h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--bos-navy);
+            margin-bottom: .4rem;
+        }
+        .newsletter-stripe p { color: var(--bos-muted); font-size: .92rem; margin-bottom: 0; }
+        .newsletter-input-group .form-control {
+            border: 1.5px solid #d1d9e6;
+            border-radius: 8px 0 0 8px;
+            padding: .7rem 1rem;
+        }
+        .newsletter-input-group .btn { border-radius: 0 8px 8px 0; }
+
+        /* ─── FOOTER ─── */
+        .footer-bos {
+            background: var(--bos-navy);
+            color: rgba(255,255,255,.75);
+            padding: 60px 0 0;
+        }
+        .footer-brand { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: #fff; }
+        .footer-brand i { color: var(--bos-gold); margin-right: .4rem; }
+        .footer-bos h6 { color: #fff; font-weight: 700; margin-bottom: 1.1rem; font-size: .9rem; letter-spacing: .05em; text-transform: uppercase; }
+        .footer-bos a { color: rgba(255,255,255,.65); text-decoration: none; font-size: .9rem; transition: color .2s; }
+        .footer-bos a:hover { color: var(--bos-gold); }
+        .footer-bos ul { list-style: none; padding: 0; margin: 0; }
+        .footer-bos ul li { margin-bottom: .55rem; }
+        .footer-bos .footer-contact p { font-size: .88rem; color: rgba(255,255,255,.65); margin-bottom: .5rem; }
+        .footer-bos .footer-contact i { color: var(--bos-gold); width: 18px; }
+        .social-icon-circle {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.1);
+            display: inline-flex; align-items: center; justify-content: center;
+            color: rgba(255,255,255,.75) !important;
+            font-size: .85rem;
+            transition: background .2s, color .2s;
+            margin-right: .35rem;
+        }
+        .social-icon-circle:hover { background: var(--bos-gold) !important; color: var(--bos-navy) !important; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,.1);
+            margin-top: 3rem;
+            padding: 1.5rem 0;
+            font-size: .82rem;
+            color: rgba(255,255,255,.45);
+        }
+        .footer-bottom a { color: rgba(255,255,255,.55); }
+        .footer-bottom a:hover { color: var(--bos-gold); }
+
+        /* ─── MISC ─── */
+        .events-empty {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--bos-muted);
+        }
+        .events-empty i { font-size: 3rem; margin-bottom: 1rem; opacity: .4; }
+
+        @media (max-width: 768px) {
+            section { padding: 60px 0; }
+            .hero-events { padding: 90px 0 60px; }
+            .cta-banner { padding: 2.5rem 1.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ─── NAVBAR ─── -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-bos sticky-top" id="mainNavbar">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <i class="fas fa-water"></i>Blue Ocean Strategies
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="/platform">Platform</a></li>
+                <li class="nav-item"><a class="nav-link active fw-semibold" href="/events" style="color: var(--bos-gold) !important;">Events</a></li>
+                <li class="nav-item ms-lg-2">
+                    <a class="nav-link btn-nav-cta" href="/about#contact">Get Started</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero-events">
+    <div class="container position-relative">
+        <div class="row align-items-center gy-5">
+            <div class="col-lg-6" data-aos="fade-right">
+                <span class="badge-pill"><i class="fas fa-calendar-star me-1"></i> Live Events & Training</span>
+                <h1>Campaign Events &amp; Professional Training</h1>
+                <p class="lead mb-4">Sharpen your campaign skills with expert-led workshops, live webinars, and networking events designed for today's political leaders.</p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="#upcoming-events" class="btn btn-light fw-bold px-4 py-2 rounded-pill" style="color: var(--bos-navy);">
+                        <i class="fas fa-calendar me-2"></i>View Events
+                    </a>
+                    <a href="#event-request-form" class="btn fw-bold px-4 py-2 rounded-pill" style="background: rgba(255,255,255,.12); color: #fff; border: 1.5px solid rgba(255,255,255,.35);">
+                        <i class="fas fa-envelope me-2"></i>Request an Event
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="stat-badge">
+                            <span class="stat-num" id="upcomingEvents">6</span>
+                            <span class="stat-lbl">Upcoming Events</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="stat-badge">
+                            <span class="stat-num">500+</span>
+                            <span class="stat-lbl">Politicians Trained</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="stat-badge">
+                            <span class="stat-num">95%</span>
+                            <span class="stat-lbl">Satisfaction Rate</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="stat-badge">
+                            <span class="stat-num">4</span>
+                            <span class="stat-lbl">Event Categories</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── EVENT CATEGORIES ─── -->
+<section class="bg-bos-light">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-label">Categories</span>
+            <h2 class="section-title">Find the Right Event for Your Campaign</h2>
+            <p class="text-muted" style="max-width:560px;margin:0 auto;">Explore our four event formats — each designed to build a specific set of campaign skills.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+                <div class="category-card" data-category="training">
+                    <div class="cat-icon-wrap"><i class="fas fa-graduation-cap"></i></div>
+                    <h5>Campaign Training</h5>
+                    <p>Comprehensive multi-day workshops on digital marketing, fundraising, voter outreach, and full campaign strategy.</p>
+                    <div class="cat-stats">
+                        <span>12 Sessions</span>
+                        <span>4.8 / 5</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="80">
+                <div class="category-card" data-category="webinar">
+                    <div class="cat-icon-wrap" style="background: linear-gradient(135deg,var(--bos-accent),#b91c1c)"><i class="fas fa-desktop"></i></div>
+                    <h5>Live Webinars</h5>
+                    <p>Interactive online sessions covering trending topics in political marketing and campaign management — free access.</p>
+                    <div class="cat-stats">
+                        <span>Weekly</span>
+                        <span>Free Access</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="160">
+                <div class="category-card" data-category="networking">
+                    <div class="cat-icon-wrap" style="background: linear-gradient(135deg,#16a34a,#15803d)"><i class="fas fa-users"></i></div>
+                    <h5>Networking Events</h5>
+                    <p>Connect with fellow politicians, campaign managers, and political marketing professionals in your area.</p>
+                    <div class="cat-stats">
+                        <span>Monthly</span>
+                        <span>Local &amp; Virtual</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="240">
+                <div class="category-card" data-category="workshop">
+                    <div class="cat-icon-wrap" style="background: linear-gradient(135deg,#7c3aed,#6d28d9)"><i class="fas fa-tools"></i></div>
+                    <h5>Hands-on Workshops</h5>
+                    <p>Practical small-group sessions where you build real campaign assets and earn a certificate of completion.</p>
+                    <div class="cat-stats">
+                        <span>Small Groups</span>
+                        <span>Certificate</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── UPCOMING EVENTS ─── -->
+<section id="upcoming-events">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-label">Don't Miss Out</span>
+            <h2 class="section-title">Upcoming Events</h2>
+        </div>
+
+        <!-- Filter Pills -->
+        <div class="filter-pills justify-content-center" data-aos="fade-up" data-aos-delay="60">
+            <button class="filter-pill active" data-filter="all">All Events</button>
+            <button class="filter-pill" data-filter="training">Training</button>
+            <button class="filter-pill" data-filter="webinar">Webinars</button>
+            <button class="filter-pill" data-filter="networking">Networking</button>
+            <button class="filter-pill" data-filter="workshop">Workshops</button>
+        </div>
+
+        <!-- Events Grid -->
+        <div class="row g-4" id="eventsGrid">
+
+            <!-- Featured Event -->
+            <div class="col-lg-6" data-category="training" data-date="2024-03-15" data-aos="fade-up">
+                <div class="event-card-bos featured h-100">
+                    <div class="event-card-header">
+                        <div class="event-date-badge">
+                            <div class="month">MAR</div>
+                            <div class="day">15</div>
+                        </div>
+                        <div class="d-flex flex-column align-items-end gap-2">
+                            <span class="featured-badge"><i class="fas fa-star me-1"></i>Featured</span>
+                            <span class="event-type-pill">Training Workshop</span>
+                        </div>
+                    </div>
+                    <div class="event-card-body">
+                        <h5>Complete Campaign Digital Marketing Bootcamp</h5>
+                        <p>Intensive 2-day training covering website development, social media strategy, email marketing, and voter analytics. Perfect for first-time candidates.</p>
+                        <div class="my-3">
+                            <div class="event-detail-row"><i class="fas fa-clock"></i><span>9:00 AM – 5:00 PM (2 Days)</span></div>
+                            <div class="event-detail-row"><i class="fas fa-map-marker-alt"></i><span>Chicago, IL + Virtual</span></div>
+                            <div class="event-detail-row"><i class="fas fa-users"></i><span>Limited to 20 participants</span></div>
+                            <div class="event-detail-row"><i class="fas fa-chalkboard-teacher"></i><span>3 Expert Instructors</span></div>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 mb-3">
+                            <span class="event-price-original">$299</span>
+                            <span class="event-price-tag">$199</span>
+                            <span class="event-savings">Save $100</span>
+                        </div>
+                        <button class="btn-register featured-btn register-btn" data-event-id="bootcamp-2024-03">Register Now <i class="fas fa-arrow-right ms-1"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Webinar -->
+            <div class="col-lg-6 col-md-6" data-category="webinar" data-date="2024-03-08" data-aos="fade-up" data-aos-delay="60">
+                <div class="event-card-bos h-100">
+                    <div class="event-card-header">
+                        <div class="event-date-badge">
+                            <div class="month">MAR</div>
+                            <div class="day">08</div>
+                        </div>
+                        <span class="event-type-pill">Free Webinar</span>
+                    </div>
+                    <div class="event-card-body">
+                        <h5>Social Media Strategy for Local Politicians</h5>
+                        <p>Learn how to build an engaging social media presence that connects with your constituents and drives voter engagement.</p>
+                        <div class="my-3">
+                            <div class="event-detail-row"><i class="fas fa-clock"></i><span>6:00 PM – 7:00 PM EST</span></div>
+                            <div class="event-detail-row"><i class="fas fa-desktop"></i><span>Online via Zoom</span></div>
+                        </div>
+                        <div class="mb-3"><span class="event-free">FREE</span></div>
+                        <button class="btn-register outline register-btn" data-event-id="webinar-social-media">Register Free</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workshop -->
+            <div class="col-lg-4 col-md-6" data-category="workshop" data-date="2024-03-12" data-aos="fade-up" data-aos-delay="0">
+                <div class="event-card-bos h-100">
+                    <div class="event-card-header">
+                        <div class="event-date-badge">
+                            <div class="month">MAR</div>
+                            <div class="day">12</div>
+                        </div>
+                        <span class="event-type-pill">Workshop</span>
+                    </div>
+                    <div class="event-card-body">
+                        <h5>Build Your Campaign Website</h5>
+                        <p>Create a professional campaign website from scratch using modern tools and best practices.</p>
+                        <div class="my-3">
+                            <div class="event-detail-row"><i class="fas fa-clock"></i><span>1:00 PM – 5:00 PM</span></div>
+                            <div class="event-detail-row"><i class="fas fa-map-marker-alt"></i><span>Austin, TX</span></div>
+                        </div>
+                        <div class="mb-3"><span class="event-price-tag">$89</span></div>
+                        <button class="btn-register outline register-btn" data-event-id="website-workshop">Register</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Networking -->
+            <div class="col-lg-4 col-md-6" data-category="networking" data-date="2024-03-20" data-aos="fade-up" data-aos-delay="80">
+                <div class="event-card-bos h-100">
+                    <div class="event-card-header">
+                        <div class="event-date-badge">
+                            <div class="month">MAR</div>
+                            <div class="day">20</div>
+                        </div>
+                        <span class="event-type-pill">Networking</span>
+                    </div>
+                    <div class="event-card-body">
+                        <h5>Local Politicians Mixer</h5>
+                        <p>Connect with current and aspiring local politicians, share experiences, and build your professional network.</p>
+                        <div class="my-3">
+                            <div class="event-detail-row"><i class="fas fa-clock"></i><span>6:00 PM – 9:00 PM</span></div>
+                            <div class="event-detail-row"><i class="fas fa-map-marker-alt"></i><span>Denver, CO</span></div>
+                        </div>
+                        <div class="mb-3"><span class="event-price-tag">$25</span></div>
+                        <button class="btn-register outline register-btn" data-event-id="networking-denver">RSVP</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expert Talk -->
+            <div class="col-lg-4 col-md-6" data-category="webinar" data-date="2024-03-22" data-aos="fade-up" data-aos-delay="160">
+                <div class="event-card-bos h-100">
+                    <div class="event-card-header">
+                        <div class="event-date-badge">
+                            <div class="month">MAR</div>
+                            <div class="day">22</div>
+                        </div>
+                        <span class="event-type-pill">Expert Talk</span>
+                    </div>
+                    <div class="event-card-body">
+                        <h5>Fundraising in the Digital Age</h5>
+                        <p>Master online fundraising strategies, donor engagement tactics, and compliance requirements for local campaigns.</p>
+                        <div class="my-3">
+                            <div class="event-detail-row"><i class="fas fa-clock"></i><span>7:00 PM – 7:45 PM EST</span></div>
+                            <div class="event-detail-row"><i class="fas fa-desktop"></i><span>Online via Zoom</span></div>
+                        </div>
+                        <div class="mb-3"><span class="event-free">FREE</span></div>
+                        <button class="btn-register outline register-btn" data-event-id="webinar-fundraising">Register Free</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advanced Training -->
+            <div class="col-lg-6 col-md-6" data-category="training" data-date="2024-04-05" data-aos="fade-up" data-aos-delay="0">
+                <div class="event-card-bos h-100">
+                    <div class="event-card-header">
+                        <div class="event-date-badge">
+                            <div class="month">APR</div>
+                            <div class="day">05</div>
+                        </div>
+                        <span class="event-type-pill">Advanced Training</span>
+                    </div>
+                    <div class="event-card-body">
+                        <h5>Voter Analytics &amp; Data Analysis</h5>
+                        <p>Deep dive into voter data, analytics tools, and predictive modeling for strategic campaign decision-making.</p>
+                        <div class="my-3">
+                            <div class="event-detail-row"><i class="fas fa-clock"></i><span>9:00 AM – 6:00 PM</span></div>
+                            <div class="event-detail-row"><i class="fas fa-map-marker-alt"></i><span>Washington, DC</span></div>
+                        </div>
+                        <div class="mb-3"><span class="event-price-tag">$149</span></div>
+                        <button class="btn-register outline register-btn" data-event-id="analytics-training">Register</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- No Results Message (hidden by default) -->
+            <div class="col-12 d-none" id="eventsEmpty">
+                <div class="events-empty">
+                    <i class="fas fa-calendar-times d-block"></i>
+                    <p class="mb-0">No events found in this category. <a href="#event-request-form">Request one!</a></p>
+                </div>
+            </div>
+
+        </div><!-- /eventsGrid -->
+
+        <p class="text-center mt-4 text-muted" style="font-size:.92rem;">
+            Don't see an event near you? <a href="#event-request-form" style="color:var(--bos-blue);font-weight:600;">Request a local event</a> or <a href="#newsletter-signup" style="color:var(--bos-blue);font-weight:600;">subscribe for updates</a>.
+        </p>
+    </div>
+</section>
+
+<!-- ─── SUCCESS STORIES ─── -->
+<section class="bg-bos-light">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-label">Proven Results</span>
+            <h2 class="section-title">Recent Success Stories</h2>
+            <p class="text-muted" style="max-width:520px;margin:0 auto;">Here's what our event attendees went on to accomplish.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+                <div class="story-card">
+                    <div class="story-img-placeholder" style="background: linear-gradient(135deg, var(--bos-navy), var(--bos-blue));">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="card-body">
+                        <h6>Bootcamp Attendee Wins City Council Seat</h6>
+                        <p class="text-muted" style="font-size:.87rem;line-height:1.6;">After our digital marketing bootcamp, Jennifer L. ran her first campaign and won a city council race with 64% of the vote.</p>
+                        <div class="d-flex flex-wrap gap-2 mt-2">
+                            <span class="metric-badge">64% Vote Share</span>
+                            <span class="event-tag">Digital Bootcamp</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="80">
+                <div class="story-card">
+                    <div class="story-img-placeholder" style="background: linear-gradient(135deg, var(--bos-accent), #b91c1c);">
+                        <i class="fas fa-hand-holding-dollar"></i>
+                    </div>
+                    <div class="card-body">
+                        <h6>Online Fundraising Seminar Sparks Record Campaign</h6>
+                        <p class="text-muted" style="font-size:.87rem;line-height:1.6;">Mark R. implemented strategies from our fundraising webinar and raised $85,000 online — 300% more than his previous campaign.</p>
+                        <div class="d-flex flex-wrap gap-2 mt-2">
+                            <span class="metric-badge">$85K Raised</span>
+                            <span class="event-tag">Fundraising Webinar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="160">
+                <div class="story-card">
+                    <div class="story-img-placeholder" style="background: linear-gradient(135deg, #7c3aed, #6d28d9);">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="card-body">
+                        <h6>Social Media Workshop Drives Massive Voter Engagement</h6>
+                        <p class="text-muted" style="font-size:.87rem;line-height:1.6;">Following our social media training, Sarah T. grew her following by 500% and achieved 40% higher voter turnout in her district.</p>
+                        <div class="d-flex flex-wrap gap-2 mt-2">
+                            <span class="metric-badge">500% Growth</span>
+                            <span class="event-tag">Social Media Workshop</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── HOW IT WORKS ─── -->
+<section class="bg-bos-navy">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-label" style="color:var(--bos-gold);">Simple Process</span>
+            <h2 class="section-title" style="color:#fff;">How to Get Started</h2>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="0">
+                <div class="process-step">
+                    <div class="process-num">1</div>
+                    <h6>Browse Events</h6>
+                    <p>Explore our upcoming events calendar and filter by category or date.</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="80">
+                <div class="process-step">
+                    <div class="process-num">2</div>
+                    <h6>Register Online</h6>
+                    <p>Secure your spot with our simple registration form — no extra steps.</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="160">
+                <div class="process-step">
+                    <div class="process-num">3</div>
+                    <h6>Attend &amp; Learn</h6>
+                    <p>Join expert instructors and connect with peers in an engaging format.</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="240">
+                <div class="process-step">
+                    <div class="process-num">4</div>
+                    <h6>Win Your Race</h6>
+                    <p>Apply what you learned and execute a winning campaign strategy.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── EVENT REQUEST FORM ─── -->
+<section id="event-request-form">
+    <div class="container">
+        <div class="row gy-5 align-items-start">
+            <!-- Left: Info -->
+            <div class="col-lg-5" data-aos="fade-right">
+                <span class="section-label">Bring BOS to You</span>
+                <h2 class="section-title">Request a Local Event</h2>
+                <p class="text-muted mb-4">Don't see an event in your area? We can bring our expert training directly to your community — customized for your region and political landscape.</p>
+                <div class="d-flex flex-column gap-3">
+                    <div class="d-flex align-items-start gap-3">
+                        <div class="cat-icon-wrap flex-shrink-0" style="width:48px;height:48px;border-radius:10px;"><i class="fas fa-users" style="font-size:1.1rem;"></i></div>
+                        <div>
+                            <h6 class="mb-1" style="font-weight:700;color:var(--bos-navy);">Group Training</h6>
+                            <p class="text-muted mb-0" style="font-size:.88rem;">Organize training for 10+ local politicians or candidates.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-start gap-3">
+                        <div class="cat-icon-wrap flex-shrink-0" style="width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--bos-accent),#b91c1c);"><i class="fas fa-map-marker-alt" style="font-size:1.1rem;"></i></div>
+                        <div>
+                            <h6 class="mb-1" style="font-weight:700;color:var(--bos-navy);">Local Focus</h6>
+                            <p class="text-muted mb-0" style="font-size:.88rem;">Customized content tailored to your region's political landscape.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-start gap-3">
+                        <div class="cat-icon-wrap flex-shrink-0" style="width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,#16a34a,#15803d);"><i class="fas fa-dollar-sign" style="font-size:1.1rem;"></i></div>
+                        <div>
+                            <h6 class="mb-1" style="font-weight:700;color:var(--bos-navy);">Group Discounts</h6>
+                            <p class="text-muted mb-0" style="font-size:.88rem;">Special pricing for local political organizations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Form -->
+            <div class="col-lg-7" data-aos="fade-left">
+                <div class="p-4 p-md-5 rounded-4 shadow-sm bg-white">
+                    <form id="eventRequestForm" class="bos-form">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="organizerName">Your Name *</label>
+                                <input type="text" class="form-control" id="organizerName" name="organizerName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="organizerEmail">Email Address *</label>
+                                <input type="email" class="form-control" id="organizerEmail" name="organizerEmail" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="organizerPhone">Phone Number</label>
+                                <input type="tel" class="form-control" id="organizerPhone" name="organizerPhone">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="eventLocation">Preferred Location *</label>
+                                <input type="text" class="form-control" id="eventLocation" name="eventLocation" placeholder="City, State" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="eventType">Event Type *</label>
+                                <select class="form-select" id="eventType" name="eventType" required>
+                                    <option value="">Select Event Type</option>
+                                    <option value="digital-marketing-bootcamp">Digital Marketing Bootcamp</option>
+                                    <option value="fundraising-workshop">Fundraising Workshop</option>
+                                    <option value="social-media-training">Social Media Training</option>
+                                    <option value="website-development">Website Development</option>
+                                    <option value="voter-analytics">Voter Analytics Training</option>
+                                    <option value="custom-training">Custom Training Program</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="expectedAttendees">Expected Attendees *</label>
+                                <select class="form-select" id="expectedAttendees" name="expectedAttendees" required>
+                                    <option value="">Select Range</option>
+                                    <option value="10-20">10–20 people</option>
+                                    <option value="20-50">20–50 people</option>
+                                    <option value="50-100">50–100 people</option>
+                                    <option value="100+">100+ people</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label for="preferredDate">Preferred Date Range</label>
+                                <input type="date" class="form-control" id="preferredDate" name="preferredDate">
+                            </div>
+                            <div class="col-12">
+                                <label for="eventDetails">Additional Details</label>
+                                <textarea class="form-control" id="eventDetails" name="eventDetails" rows="4" placeholder="Tell us about your group, specific training needs, venue options, or any other requirements..."></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn-bos-primary w-100" id="requestSubmitBtn">
+                                    <span class="btn-text">Submit Request</span>
+                                    <span class="btn-spinner d-none"><i class="fas fa-spinner fa-spin me-1"></i>Sending…</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div id="request-success" class="alert alert-success mt-3 d-none" role="alert">
+                        <i class="fas fa-check-circle me-2"></i><strong>Request Submitted!</strong> We'll contact you within 2 business days.
+                    </div>
+                    <div id="request-error" class="alert alert-danger mt-3 d-none" role="alert">
+                        <i class="fas fa-exclamation-triangle me-2"></i><strong>Error:</strong> <span id="request-error-message">Something went wrong. Please try again.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── NEWSLETTER SIGNUP ─── -->
+<section class="bg-bos-light" id="newsletter-signup">
+    <div class="container">
+        <div class="newsletter-stripe" data-aos="fade-up">
+            <div class="row align-items-center gy-4">
+                <div class="col-lg-6">
+                    <h5><i class="fas fa-envelope me-2" style="color:var(--bos-accent);"></i>Stay Updated on Events</h5>
+                    <p>Get early-bird pricing, new event announcements, and free campaign resources delivered to your inbox.</p>
+                    <div class="d-flex flex-wrap gap-3 mt-3">
+                        <span style="font-size:.83rem;color:var(--bos-muted);"><i class="fas fa-calendar-plus me-1" style="color:var(--bos-blue);"></i>Event announcements</span>
+                        <span style="font-size:.83rem;color:var(--bos-muted);"><i class="fas fa-tag me-1" style="color:var(--bos-blue);"></i>Early-bird discounts</span>
+                        <span style="font-size:.83rem;color:var(--bos-muted);"><i class="fas fa-download me-1" style="color:var(--bos-blue);"></i>Free resources</span>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <form id="newsletterForm">
+                        <div class="input-group newsletter-input-group">
+                            <input type="email" class="form-control" id="newsletterEmail" name="email" placeholder="Enter your email address" required>
+                            <button type="submit" class="btn btn-bos-primary" style="border-radius:0 8px 8px 0;">
+                                <span class="btn-text">Subscribe</span>
+                                <span class="btn-spinner d-none"><i class="fas fa-spinner fa-spin"></i></span>
+                            </button>
+                        </div>
+                        <p class="mt-2 mb-0" style="font-size:.78rem;color:var(--bos-muted);">We respect your privacy. Unsubscribe at any time.</p>
+                    </form>
+                    <div id="newsletter-success" class="alert alert-success mt-2 d-none" role="alert">
+                        <i class="fas fa-check-circle me-2"></i><strong>Subscribed!</strong> Check your email for confirmation.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── CTA BANNER ─── -->
+<section>
+    <div class="container" data-aos="fade-up">
+        <div class="cta-banner text-center text-md-start">
+            <div class="row align-items-center gy-4">
+                <div class="col-md-8">
+                    <h3>Ready to Launch Your Winning Campaign?</h3>
+                    <p>Let Blue Ocean Strategies build the digital infrastructure behind your next political victory.</p>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <a href="/about#contact" class="btn-cta-white">Get a Free Consultation</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer class="footer-bos">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="footer-brand mb-3"><i class="fas fa-water"></i>Blue Ocean Strategies</div>
+                <p style="font-size:.88rem;line-height:1.7;max-width:300px;">Helping local politicians win through data-driven digital marketing, expert campaign consulting, and world-class training.</p>
+                <div class="mt-3">
+                    <a href="#" class="social-icon-circle"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon-circle"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon-circle"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon-circle"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-6">
+                <h6>Services</h6>
+                <ul>
+                    <li><a href="/platform">Digital Strategy</a></li>
+                    <li><a href="/platform">Campaign Management</a></li>
+                    <li><a href="/platform">Voter Analytics</a></li>
+                    <li><a href="/platform">Social Media</a></li>
+                    <li><a href="/platform">Ad Management</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-md-6 col-6">
+                <h6>Company</h6>
+                <ul>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/platform">Platform</a></li>
+                    <li><a href="/events">Events</a></li>
+                    <li><a href="/about#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-6 footer-contact">
+                <h6>Contact Us</h6>
+                <p><i class="fas fa-envelope me-2"></i>info@blueoceanstrategies.com</p>
+                <p><i class="fas fa-phone me-2"></i>(555) 123-4567</p>
+                <p><i class="fas fa-map-marker-alt me-2"></i>Washington, DC Metro Area</p>
+                <p class="mt-3" style="font-size:.8rem;color:rgba(255,255,255,.4);">Powered by <strong style="color:rgba(255,255,255,.6);">Blue Ocean Strategies</strong></p>
+            </div>
+        </div>
+        <div class="footer-bottom d-flex flex-wrap justify-content-between gap-2">
+            <span>&copy; 2024 Blue Ocean Strategies. All rights reserved.</span>
+            <span><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a></span>
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/analytics.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    // ── Navbar scroll shadow ──
+    const navbar = document.getElementById('mainNavbar');
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 30);
+    });
+
+    // ── Event filter pills ──
+    const filterPills = document.querySelectorAll('.filter-pill');
+    const eventCols   = document.querySelectorAll('#eventsGrid [data-category]');
+    const emptyMsg    = document.getElementById('eventsEmpty');
+
+    filterPills.forEach(pill => {
+        pill.addEventListener('click', function () {
+            const filter = this.dataset.filter;
+
+            filterPills.forEach(p => p.classList.remove('active'));
+            this.classList.add('active');
+
+            let visible = 0;
+            eventCols.forEach(col => {
+                const show = filter === 'all' || col.dataset.category === filter;
+                col.style.display = show ? '' : 'none';
+                if (show) visible++;
+            });
+
+            emptyMsg.classList.toggle('d-none', visible > 0);
+
+            if (window.Analytics) {
+                Analytics.trackEvent('event_filter', {
+                    event_category: 'engagement',
+                    event_label: filter,
+                    filter_type: filter
+                });
+            }
+        });
+    });
+
+    // ── Category cards filter shortcut ──
+    document.querySelectorAll('.category-card').forEach(card => {
+        card.addEventListener('click', function () {
+            const cat = this.dataset.category;
+            const target = document.querySelector(`.filter-pill[data-filter="${cat}"]`);
+            if (target) target.click();
+            document.getElementById('upcoming-events').scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // ── Registration buttons ──
+    document.querySelectorAll('.register-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const eventId    = this.dataset.eventId;
+            const eventTitle = this.closest('.event-card-bos').querySelector('h5').textContent;
+
+            if (window.Analytics) {
+                Analytics.trackEvent('event_registration_click', {
+                    event_category: 'conversion',
+                    event_label: eventTitle,
+                    event_id: eventId,
+                    event_title: eventTitle
+                });
+            }
+
+            alert(`Registration for "${eventTitle}" — This would redirect to the registration system.`);
+        });
+    });
+
+    // ── Update hero upcoming count ──
+    const visibleEvents = document.querySelectorAll('#eventsGrid [data-category]').length;
+    document.getElementById('upcomingEvents').textContent = visibleEvents;
+
+    // ── Event request form ──
+    const requestForm      = document.getElementById('eventRequestForm');
+    const requestSubmitBtn = document.getElementById('requestSubmitBtn');
+    const requestSuccess   = document.getElementById('request-success');
+    const requestError     = document.getElementById('request-error');
+
+    requestForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        requestSubmitBtn.disabled = true;
+        requestSubmitBtn.querySelector('.btn-text').classList.add('d-none');
+        requestSubmitBtn.querySelector('.btn-spinner').classList.remove('d-none');
+        requestSuccess.classList.add('d-none');
+        requestError.classList.add('d-none');
+
+        try {
+            const formData = new FormData(requestForm);
+            const data = {
+                organizerName:      formData.get('organizerName'),
+                email:              formData.get('organizerEmail'),
+                phone:              formData.get('organizerPhone'),
+                location:           formData.get('eventLocation'),
+                eventType:          formData.get('eventType'),
+                expectedAttendees:  formData.get('expectedAttendees'),
+                preferredDate:      formData.get('preferredDate'),
+                details:            formData.get('eventDetails'),
+                formType:           'event_request'
+            };
+
+            if (window.API) {
+                await API.submitContactForm(data);
+                if (window.Analytics) {
+                    Analytics.trackEvent('event_request_submitted', {
+                        event_category: 'conversion',
+                        event_label: 'event_request_form',
+                        event_type: data.eventType,
+                        location: data.location
+                    });
+                }
+                requestSuccess.classList.remove('d-none');
+                requestForm.reset();
+            } else {
+                throw new Error('API not available');
+            }
+        } catch (err) {
+            document.getElementById('request-error-message').textContent =
+                err.message || 'Something went wrong. Please try again.';
+            requestError.classList.remove('d-none');
+        } finally {
+            requestSubmitBtn.disabled = false;
+            requestSubmitBtn.querySelector('.btn-text').classList.remove('d-none');
+            requestSubmitBtn.querySelector('.btn-spinner').classList.add('d-none');
+        }
+    });
+
+    // ── Newsletter form ──
+    const newsletterForm    = document.getElementById('newsletterForm');
+    const newsletterSuccess = document.getElementById('newsletter-success');
+
+    newsletterForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const submitBtn = this.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.querySelector('.btn-text').classList.add('d-none');
+        submitBtn.querySelector('.btn-spinner').classList.remove('d-none');
+
+        try {
+            const email = document.getElementById('newsletterEmail').value;
+            if (window.API) {
+                await API.subscribeToNewsletter({ email, source: 'events_page' });
+                if (window.Analytics) Analytics.trackNewsletterSignup(email);
+                newsletterSuccess.classList.remove('d-none');
+                this.reset();
+            }
+        } catch (err) {
+            alert('Subscription failed. Please try again.');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.querySelector('.btn-text').classList.remove('d-none');
+            submitBtn.querySelector('.btn-spinner').classList.add('d-none');
+        }
+    });
+
+    // ── Analytics page view ──
+    if (window.Analytics) {
+        Analytics.trackEvent('events_page_view', {
+            event_category: 'page_view',
+            event_label: 'events_page',
+            page_type: 'events',
+            upcoming_events_count: visibleEvents
+        });
+    }
+
+    // ── Smooth scroll for anchor links ──
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+});
+</script>
+
+<!-- Bootstrap 5.3 JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<!-- AOS -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init({ duration: 800, easing: 'ease-out-quart', once: true, offset: 60 });</script>
+</body>
+</html>

@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOS Super Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --ocean-deep:    #080e1c;
+            --ocean-dark:    #0d1526;
+            --surface:       #111d35;
+            --surface2:      #162040;
+            --ocean-primary: #1a3a6b;
+            --ocean-bright:  #4db8ff;
+            --teal:          #1de9b6;
+            --gold:          #f4c430;
+            --border:        #1e2d4a;
+            --text-primary:  #e2e8f0;
+            --text-secondary:#94a3b8;
+            --danger:        #e74c3c;
+            --success:       #2ecc71;
+            --warning:       #f39c12;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--ocean-deep); color: var(--text-primary); min-height: 100vh; }
+
+        /* ---- LOGIN ---- */
+        #login-page {
+            display: flex; align-items: center; justify-content: center;
+            min-height: 100vh;
+            background: radial-gradient(ellipse at 30% 50%, rgba(26,58,107,.4) 0%, transparent 70%),
+                        radial-gradient(ellipse at 70% 20%, rgba(29,233,182,.06) 0%, transparent 60%),
+                        var(--ocean-deep);
+        }
+        .login-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 20px; padding: 44px 40px; width: 100%; max-width: 420px;
+            box-shadow: 0 24px 80px rgba(0,0,0,.5);
+        }
+        .login-logo { text-align: center; margin-bottom: 32px; }
+        .login-logo .logo-icon { width: 68px; height: 68px; background: linear-gradient(135deg, #7b1fa2, #ab47bc); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 30px; margin: 0 auto 16px; }
+        .login-logo h1 { font-size: 22px; font-weight: 700; }
+        .login-logo p { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
+        .super-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(171,71,188,.15); color: #ce93d8; border: 1px solid rgba(171,71,188,.3); border-radius: 20px; padding: 4px 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; margin-top: 10px; }
+
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; }
+        .form-group input { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; color: var(--text-primary); font-size: 14px; outline: none; transition: border-color .2s; }
+        .form-group input:focus { border-color: #ab47bc; }
+
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: all .2s; text-decoration: none; }
+        .btn-full { width: 100%; justify-content: center; }
+        .btn-primary { background: linear-gradient(135deg, #7b1fa2, #ab47bc); color: #fff; }
+        .btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+        .btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--text-secondary); }
+        .btn-ghost:hover { border-color: var(--text-secondary); color: var(--text-primary); }
+        .btn-danger { background: rgba(231,76,60,.15); border: 1px solid rgba(231,76,60,.3); color: var(--danger); }
+        .btn-danger:hover { background: rgba(231,76,60,.25); }
+        .btn-success { background: rgba(46,204,113,.15); border: 1px solid rgba(46,204,113,.3); color: var(--success); }
+        .btn-success:hover { background: rgba(46,204,113,.25); }
+        .btn-warning { background: rgba(243,156,18,.12); border: 1px solid rgba(243,156,18,.3); color: var(--warning); }
+        .btn-warning:hover { background: rgba(243,156,18,.25); }
+        .btn-sm { padding: 6px 12px; font-size: 12px; border-radius: 8px; }
+
+        .login-error { background: rgba(231,76,60,.1); border: 1px solid var(--danger); border-radius: 8px; padding: 12px 16px; font-size: 13px; color: var(--danger); margin-bottom: 16px; display: none; }
+
+        /* ---- APP ---- */
+        #app-page { display: none; min-height: 100vh; }
+
+        .topbar {
+            position: sticky; top: 0; z-index: 100;
+            background: var(--surface); border-bottom: 1px solid var(--border);
+            padding: 0 28px; height: 62px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .topbar-left { display: flex; align-items: center; gap: 12px; }
+        .topbar-logo { font-size: 22px; }
+        .topbar-title { font-size: 18px; font-weight: 700; color: var(--text-primary); }
+        .topbar-sub { font-size: 12px; color: #ce93d8; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; margin-top: 1px; }
+        .topbar-right { display: flex; align-items: center; gap: 12px; }
+        .topbar-user { font-size: 13px; color: var(--text-secondary); }
+
+        .main-content { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+
+        /* Tabs */
+        .tab-nav { display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 4px; margin-bottom: 28px; width: fit-content; }
+        .tab-btn { padding: 10px 22px; border-radius: 9px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; background: transparent; color: var(--text-secondary); transition: all .2s; display: flex; align-items: center; gap: 8px; }
+        .tab-btn.active { background: linear-gradient(135deg, #7b1fa2, #ab47bc); color: #fff; }
+        .tab-btn:not(.active):hover { color: var(--text-primary); background: var(--surface2); }
+        .tab-count { background: rgba(255,255,255,.2); border-radius: 10px; padding: 1px 7px; font-size: 11px; font-weight: 700; }
+
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; }
+
+        /* Stats row */
+        .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 26px; }
+        .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; display: flex; align-items: center; gap: 14px; }
+        .stat-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+        .stat-number { font-size: 28px; font-weight: 800; line-height: 1; }
+        .stat-label { font-size: 11px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: .5px; margin-top: 4px; }
+
+        /* Table card */
+        .table-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+        .table-card-header { padding: 18px 22px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+        .table-card-title { font-size: 15px; font-weight: 700; }
+        table { width: 100%; border-collapse: collapse; }
+        th { padding: 12px 16px; text-align: left; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--text-secondary); border-bottom: 1px solid var(--border); }
+        td { padding: 14px 16px; font-size: 13px; border-bottom: 1px solid rgba(30,45,74,.5); vertical-align: middle; }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: rgba(255,255,255,.02); }
+
+        .table-empty { text-align: center; padding: 40px 16px !important; color: var(--text-secondary); line-height: 1.8; }
+
+        /* Badges */
+        .status-badge { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+        .status-pending  { background: rgba(243,156,18,.12); color: var(--warning); border: 1px solid rgba(243,156,18,.3); }
+        .status-approved { background: rgba(46,204,113,.12); color: var(--success); border: 1px solid rgba(46,204,113,.3); }
+        .status-rejected { background: rgba(231,76,60,.1); color: var(--danger); border: 1px solid rgba(231,76,60,.3); }
+        .status-active   { background: rgba(46,204,113,.12); color: var(--success); border: 1px solid rgba(46,204,113,.3); }
+        .status-inactive { background: rgba(148,163,184,.1); color: var(--text-secondary); border: 1px solid var(--border); }
+
+        /* Action buttons row */
+        .actions { display: flex; gap: 6px; flex-wrap: wrap; }
+
+        /* Reason text */
+        .reason-text { max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text-secondary); font-style: italic; font-size: 12px; }
+
+        /* Filter bar */
+        .filter-bar { display: flex; gap: 10px; align-items: center; margin-bottom: 18px; }
+        .filter-select { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; color: var(--text-primary); font-size: 13px; cursor: pointer; }
+
+        /* Toast */
+        .toast-container { position: fixed; bottom: 24px; right: 24px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
+        .toast { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; font-size: 13px; min-width: 260px; max-width: 380px; display: flex; align-items: center; gap: 10px; box-shadow: 0 8px 32px rgba(0,0,0,.4); animation: slideIn .3s ease; }
+        .toast.success { border-left: 3px solid var(--success); }
+        .toast.error   { border-left: 3px solid var(--danger); }
+        .toast.info    { border-left: 3px solid var(--ocean-bright); }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+        /* Modal */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.65); z-index: 1000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+        .modal-overlay.open { display: flex; }
+        .modal-box { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px 30px; width: 100%; max-width: 480px; box-shadow: 0 24px 80px rgba(0,0,0,.5); }
+        .modal-box h3 { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+        .modal-box p { font-size: 13px; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.6; }
+        .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+        .modal-box textarea { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; color: var(--text-primary); font-size: 13px; resize: vertical; outline: none; }
+        .modal-box textarea:focus { border-color: #ab47bc; }
+    </style>
+</head>
+<body>
+
+<!-- ===================== LOGIN ===================== -->
+<div id="login-page">
+    <div class="login-card">
+        <div class="login-logo">
+            <div class="logo-icon">👑</div>
+            <h1>Blue Ocean Strategies</h1>
+            <span class="super-badge"><i class="fas fa-shield-alt"></i> Super Admin Portal</span>
+        </div>
+        <div class="login-error" id="loginError"></div>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="loginUsername">Username</label>
+                <input type="text" id="loginUsername" placeholder="superadmin" autocomplete="username" required>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full" id="loginBtn">
+                <i class="fas fa-shield-alt"></i>
+                <span>Super Admin Sign In</span>
+            </button>
+        </form>
+        <p style="text-align:center;margin-top:18px;font-size:12px;color:var(--text-secondary)">
+            Regular admin? <a href="/admin" style="color:var(--ocean-bright)">Go to Admin Panel</a>
+        </p>
+    </div>
+</div>
+
+<!-- ===================== APP ===================== -->
+<div id="app-page">
+
+    <div class="topbar">
+        <div class="topbar-left">
+            <span class="topbar-logo">👑</span>
+            <div>
+                <div class="topbar-title">Blue Ocean Strategies</div>
+                <div class="topbar-sub"><i class="fas fa-shield-alt"></i> Super Admin</div>
+            </div>
+        </div>
+        <div class="topbar-right">
+            <span class="topbar-user" id="topbarUser"></span>
+            <button class="btn btn-ghost btn-sm" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+    </div>
+
+    <div class="main-content">
+
+        <!-- Stats -->
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-icon" style="background:rgba(243,156,18,.12);color:var(--warning)"><i class="fas fa-clock"></i></div>
+                <div><div class="stat-number" id="stat-pending">—</div><div class="stat-label">Pending</div></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background:rgba(46,204,113,.12);color:var(--success)"><i class="fas fa-check-circle"></i></div>
+                <div><div class="stat-number" id="stat-approved">—</div><div class="stat-label">Approved</div></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background:rgba(231,76,60,.1);color:var(--danger)"><i class="fas fa-times-circle"></i></div>
+                <div><div class="stat-number" id="stat-rejected">—</div><div class="stat-label">Rejected</div></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background:rgba(77,184,255,.1);color:var(--ocean-bright)"><i class="fas fa-users"></i></div>
+                <div><div class="stat-number" id="stat-admins">—</div><div class="stat-label">Active Admins</div></div>
+            </div>
+        </div>
+
+        <!-- Tab nav -->
+        <div class="tab-nav">
+            <button class="tab-btn active" onclick="switchTab('registrations')" id="tab-registrations">
+                <i class="fas fa-inbox"></i> Registration Requests
+                <span class="tab-count" id="pending-count" style="display:none">0</span>
+            </button>
+            <button class="tab-btn" onclick="switchTab('admins')" id="tab-admins">
+                <i class="fas fa-users-cog"></i> Manage Admins
+            </button>
+        </div>
+
+        <!-- Registrations pane -->
+        <div class="tab-pane active" id="pane-registrations">
+            <div class="filter-bar">
+                <select class="filter-select" id="regStatusFilter" onchange="loadRegistrations()">
+                    <option value="">All Statuses</option>
+                    <option value="pending" selected>Pending</option>
+                    <option value="approved">Approved</option>
+                    <option value="rejected">Rejected</option>
+                </select>
+                <button class="btn btn-ghost btn-sm" onclick="loadRegistrations()"><i class="fas fa-sync-alt"></i> Refresh</button>
+            </div>
+            <div class="table-card">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Organization</th>
+                            <th>Reason</th>
+                            <th>Requested</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="regTableBody">
+                        <tr><td colspan="7" class="table-empty"><i class="fas fa-spinner fa-spin"></i><br>Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Admins pane -->
+        <div class="tab-pane" id="pane-admins">
+            <div class="filter-bar">
+                <button class="btn btn-ghost btn-sm" onclick="loadAdmins()"><i class="fas fa-sync-alt"></i> Refresh</button>
+            </div>
+            <div class="table-card">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Created</th>
+                            <th>Last Login</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminsTableBody">
+                        <tr><td colspan="6" class="table-empty"><i class="fas fa-spinner fa-spin"></i><br>Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Reject Modal -->
+<div class="modal-overlay" id="rejectModal">
+    <div class="modal-box">
+        <h3><i class="fas fa-times-circle" style="color:var(--danger)"></i> Reject Registration</h3>
+        <p>Optionally provide a reason for rejection. This will be sent to the applicant via email.</p>
+        <textarea id="rejectReason" rows="3" placeholder="Reason for rejection (optional)..."></textarea>
+        <div class="modal-actions">
+            <button class="btn btn-ghost" onclick="closeRejectModal()">Cancel</button>
+            <button class="btn btn-danger" onclick="submitReject()"><i class="fas fa-times"></i> Reject</button>
+        </div>
+    </div>
+</div>
+
+<!-- Toast -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+const API = '';
+let saToken = localStorage.getItem('bosSuperAdminToken');
+let currentUser = JSON.parse(localStorage.getItem('bosSuperAdminUser') || 'null');
+let pendingRejectId = null;
+
+// ---- AUTH ----
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('loginBtn');
+    const errEl = document.getElementById('loginError');
+    errEl.style.display = 'none';
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing in...';
+    try {
+        const res = await fetch('/api/superadmin/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                username: document.getElementById('loginUsername').value,
+                password: document.getElementById('loginPassword').value
+            })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Login failed');
+        saToken = data.token;
+        currentUser = data.user;
+        localStorage.setItem('bosSuperAdminToken', saToken);
+        localStorage.setItem('bosSuperAdminUser', JSON.stringify(currentUser));
+        enterApp();
+    } catch (err) {
+        errEl.textContent = err.message;
+        errEl.style.display = 'block';
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-shield-alt"></i> Super Admin Sign In';
+    }
+});
+
+function enterApp() {
+    document.getElementById('login-page').style.display = 'none';
+    document.getElementById('app-page').style.display = 'block';
+    document.getElementById('topbarUser').textContent = currentUser?.username || 'superadmin';
+    loadStats();
+    loadRegistrations();
+}
+
+function logout() {
+    localStorage.removeItem('bosSuperAdminToken');
+    localStorage.removeItem('bosSuperAdminUser');
+    saToken = null; currentUser = null;
+    document.getElementById('login-page').style.display = 'flex';
+    document.getElementById('app-page').style.display = 'none';
+}
+
+async function saApi(method, path, body) {
+    const opts = {
+        method,
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${saToken}` }
+    };
+    if (body) opts.body = JSON.stringify(body);
+    const res = await fetch(API + path, opts);
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Request failed');
+    return data;
+}
+
+// ---- TABS ----
+function switchTab(name) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    document.getElementById(`tab-${name}`).classList.add('active');
+    document.getElementById(`pane-${name}`).classList.add('active');
+    if (name === 'registrations') loadRegistrations();
+    if (name === 'admins') loadAdmins();
+}
+
+// ---- STATS ----
+async function loadStats() {
+    try {
+        const [regs, admins] = await Promise.all([
+            saApi('GET', '/api/superadmin/registrations'),
+            saApi('GET', '/api/superadmin/admins')
+        ]);
+        const pending  = regs.filter(r => r.status === 'pending').length;
+        const approved = regs.filter(r => r.status === 'approved').length;
+        const rejected = regs.filter(r => r.status === 'rejected').length;
+        const activeAdmins = admins.filter(a => a.active).length;
+        document.getElementById('stat-pending').textContent = pending;
+        document.getElementById('stat-approved').textContent = approved;
+        document.getElementById('stat-rejected').textContent = rejected;
+        document.getElementById('stat-admins').textContent = activeAdmins;
+        // Badge
+        const badge = document.getElementById('pending-count');
+        if (pending > 0) { badge.textContent = pending; badge.style.display = 'inline'; }
+        else badge.style.display = 'none';
+    } catch {}
+}
+
+// ---- REGISTRATIONS ----
+async function loadRegistrations() {
+    const tbody = document.getElementById('regTableBody');
+    tbody.innerHTML = '<tr><td colspan="7" class="table-empty"><i class="fas fa-spinner fa-spin"></i><br>Loading...</td></tr>';
+    try {
+        const status = document.getElementById('regStatusFilter').value;
+        const url = status ? `/api/superadmin/registrations?status=${encodeURIComponent(status)}` : '/api/superadmin/registrations';
+        const regs = await saApi('GET', url);
+        if (!regs.length) {
+            tbody.innerHTML = '<tr><td colspan="7" class="table-empty"><i class="fas fa-inbox" style="font-size:28px"></i><br>No registration requests found.</td></tr>';
+            return;
+        }
+        tbody.innerHTML = regs.map(r => {
+            const date = new Date(r.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            const actions = r.status === 'pending'
+                ? `<div class="actions">
+                       <button class="btn btn-success btn-sm" onclick="approveReg(${r.id}, '${escHtml(r.full_name)}')"><i class="fas fa-check"></i> Approve</button>
+                       <button class="btn btn-danger btn-sm" onclick="openRejectModal(${r.id})"><i class="fas fa-times"></i> Reject</button>
+                   </div>`
+                : `<span style="color:var(--text-secondary);font-size:12px">Reviewed ${r.reviewed_by ? 'by ' + escHtml(r.reviewed_by) : ''}</span>`;
+            return `<tr>
+                <td style="font-weight:600">${escHtml(r.full_name)}</td>
+                <td><a href="mailto:${escHtml(r.email)}" style="color:var(--ocean-bright)">${escHtml(r.email)}</a></td>
+                <td style="color:var(--text-secondary)">${r.organization ? escHtml(r.organization) : '—'}</td>
+                <td><span class="reason-text" title="${r.reason ? escHtml(r.reason) : ''}">${r.reason ? escHtml(r.reason) : '—'}</span></td>
+                <td style="color:var(--text-secondary);font-size:12px">${date}</td>
+                <td><span class="status-badge status-${r.status}">${r.status.charAt(0).toUpperCase() + r.status.slice(1)}</span></td>
+                <td>${actions}</td>
+            </tr>`;
+        }).join('');
+    } catch (err) {
+        tbody.innerHTML = `<tr><td colspan="7" class="table-empty" style="color:var(--danger)"><i class="fas fa-exclamation-triangle"></i><br>${escHtml(err.message)}</td></tr>`;
+    }
+}
+
+async function approveReg(id, name) {
+    if (!confirm(`Approve registration for ${name}? An email with their credentials will be sent automatically.`)) return;
+    try {
+        const data = await saApi('POST', `/api/superadmin/registrations/${id}/approve`);
+        toast(`✅ Approved! Username: ${data.username} — Credentials emailed.`, 'success');
+        loadStats();
+        loadRegistrations();
+    } catch (err) {
+        toast('Failed: ' + err.message, 'error');
+    }
+}
+
+function openRejectModal(id) {
+    pendingRejectId = id;
+    document.getElementById('rejectReason').value = '';
+    document.getElementById('rejectModal').classList.add('open');
+}
+function closeRejectModal() {
+    document.getElementById('rejectModal').classList.remove('open');
+    pendingRejectId = null;
+}
+async function submitReject() {
+    const reason = document.getElementById('rejectReason').value.trim();
+    try {
+        await saApi('POST', `/api/superadmin/registrations/${pendingRejectId}/reject`, { reason: reason || undefined });
+        toast('Registration rejected.', 'info');
+        closeRejectModal();
+        loadStats();
+        loadRegistrations();
+    } catch (err) {
+        toast('Failed: ' + err.message, 'error');
+    }
+}
+
+// ---- ADMINS ----
+async function loadAdmins() {
+    const tbody = document.getElementById('adminsTableBody');
+    tbody.innerHTML = '<tr><td colspan="6" class="table-empty"><i class="fas fa-spinner fa-spin"></i><br>Loading...</td></tr>';
+    try {
+        const admins = await saApi('GET', '/api/superadmin/admins');
+        if (!admins.length) {
+            tbody.innerHTML = '<tr><td colspan="6" class="table-empty"><i class="fas fa-users" style="font-size:28px"></i><br>No admin accounts found.</td></tr>';
+            return;
+        }
+        tbody.innerHTML = admins.map(a => {
+            const created = new Date(a.created_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            const lastLogin = a.last_login ? new Date(a.last_login).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Never';
+            const statusBadge = a.active
+                ? '<span class="status-badge status-active">Active</span>'
+                : '<span class="status-badge status-inactive">Inactive</span>';
+            return `<tr>
+                <td style="font-weight:600;font-family:monospace">${escHtml(a.username)}</td>
+                <td><a href="mailto:${escHtml(a.email)}" style="color:var(--ocean-bright)">${escHtml(a.email)}</a></td>
+                <td>${statusBadge}</td>
+                <td style="color:var(--text-secondary);font-size:12px">${created}</td>
+                <td style="color:var(--text-secondary);font-size:12px">${lastLogin}</td>
+                <td>
+                    <div class="actions">
+                        <button class="btn btn-warning btn-sm" onclick="toggleAdmin(${a.id})" title="${a.active ? 'Deactivate' : 'Activate'}">
+                            <i class="fas fa-${a.active ? 'ban' : 'check'}"></i> ${a.active ? 'Deactivate' : 'Activate'}
+                        </button>
+                        <button class="btn btn-danger btn-sm" onclick="removeAdmin(${a.id}, '${escHtml(a.username)}')">
+                            <i class="fas fa-trash"></i> Remove
+                        </button>
+                    </div>
+                </td>
+            </tr>`;
+        }).join('');
+    } catch (err) {
+        tbody.innerHTML = `<tr><td colspan="6" class="table-empty" style="color:var(--danger)"><i class="fas fa-exclamation-triangle"></i><br>${escHtml(err.message)}</td></tr>`;
+    }
+}
+
+async function toggleAdmin(id) {
+    try {
+        const data = await saApi('PUT', `/api/superadmin/admins/${id}/toggle`);
+        toast(`Admin ${data.admin.active ? 'activated' : 'deactivated'}.`, 'info');
+        loadAdmins();
+        loadStats();
+    } catch (err) {
+        toast('Failed: ' + err.message, 'error');
+    }
+}
+
+async function removeAdmin(id, username) {
+    if (!confirm(`Permanently remove admin "${username}"? This cannot be undone.`)) return;
+    try {
+        await saApi('DELETE', `/api/superadmin/admins/${id}`);
+        toast('Admin account removed.', 'success');
+        loadAdmins();
+        loadStats();
+    } catch (err) {
+        toast('Failed: ' + err.message, 'error');
+    }
+}
+
+// ---- UTILS ----
+function escHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+function toast(msg, type = 'info') {
+    const c = document.getElementById('toastContainer');
+    const t = document.createElement('div');
+    const icon = type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle';
+    t.className = `toast ${type}`;
+    t.innerHTML = `<i class="fas ${icon}"></i><span>${msg}</span>`;
+    c.appendChild(t);
+    setTimeout(() => t.remove(), 4000);
+}
+
+// ---- INIT ----
+if (saToken && currentUser) {
+    enterApp();
+}
+</script>
+</body>
+</html>

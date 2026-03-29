@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Dynamic SEO Meta Tags -->
+    <title id="page-title">Vote for Change - Professional Political Marketing Platform</title>
+    <meta name="description" id="page-description" content="Professional political marketing platform powered by advanced analytics, dynamic content management, and lead generation. Transform your campaign with our proven digital strategies.">
+    <meta name="keywords" id="page-keywords" content="political marketing, campaign management, digital strategy, voter outreach, political advertising, election campaigns, political consulting">
+    <meta name="author" content="Blue Ocean Strategies">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" id="og-url" content="">
+    <meta property="og:title" id="og-title" content="Vote for Change - Professional Political Marketing">
+    <meta property="og:description" id="og-description" content="Transform your political campaign with our professional digital marketing platform">
+    <meta property="og:image" id="og-image" content="/assets/images/og-image.jpg">
+    <meta property="og:site_name" content="Professional Political Marketing Platform">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" id="twitter-url" content="">
+    <meta property="twitter:title" id="twitter-title" content="Vote for Change - Professional Political Marketing">
+    <meta property="twitter:description" id="twitter-description" content="Transform your political campaign with our professional digital marketing platform">
+    <meta property="twitter:image" id="twitter-image" content="/assets/images/twitter-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" id="canonical-url" href="">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json" id="structured-data">
+    {
+        "@context": "https://schema.org",
+        "@type": "PoliticalOrganization",
+        "name": "Vote for Change Campaign",
+        "description": "Professional political marketing platform with advanced campaign management tools",
+        "url": "",
+        "logo": "/assets/images/logo.png",
+        "sameAs": [],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+1-555-123-4567",
+            "contactType": "Customer Service",
+            "availableLanguage": "English"
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "123 Campaign Street",
+            "addressLocality": "Springfield",
+            "addressRegion": "IL",
+            "postalCode": "62701",
+            "addressCountry": "US"
+        }
+    }
+    </script>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/site.webmanifest">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/dynamic.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Analytics Setup -->
+    <script>
+        // Google Analytics 4
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        // Will be populated dynamically
+    </script>
+    
+    <!-- Marketing Firm Branding -->
+    <style>
+        .marketing-firm-badge {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .marketing-firm-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        .powered-by {
+            font-size: 0.7rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-spinner"></div>
+        <p>Loading Campaign Platform...</p>
+    </div>
+
+    <!-- Header & Dynamic Navigation -->
+    <header class="header" id="main-header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo" id="campaign-logo">
+                    <h1 id="campaign-name">VOTE FOR CHANGE</h1>
+                    <small class="candidate-name" id="candidate-name">Your Candidate 2026</small>
+                </div>
+                <ul class="nav-menu" id="main-nav">
+                    <li><a href="#home" class="nav-link" data-page="home">Home</a></li>
+                    <li><a href="/about" class="nav-link" data-page="about">About</a></li>
+                    <li><a href="/platform" class="nav-link" data-page="platform">Platform</a></li>
+                    <li><a href="/events" class="nav-link" data-page="events">Events</a></li>
+                    <li><a href="/volunteer" class="nav-link" data-page="volunteer">Volunteer</a></li>
+                    <li><a href="/donate" class="nav-link" data-page="donate">Donate</a></li>
+                    <li><a href="/contact" class="nav-link" data-page="contact">Contact</a></li>
+                </ul>
+                <div class="nav-toggle" id="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <div class="nav-actions">
+                    <button class="btn btn-primary btn-sm" id="quick-donate">Quick Donate</button>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Campaign Progress Bar -->
+        <div class="campaign-progress" id="campaign-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 67%"></div>
+            </div>
+            <div class="progress-info">
+                <span>Campaign Progress: 67% to Goal</span>
+                <span class="days-remaining">42 Days Until Election</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dynamic Alert Bar -->
+    <div class="alert-bar" id="alert-bar" style="display: none;">
+        <div class="container">
+            <span class="alert-icon">📢</span>
+            <span class="alert-text" id="alert-text"></span>
+            <button class="alert-close" onclick="closeAlert()">&times;</button>
+        </div>
+    </div>
+
+    <!-- Hero Section with Dynamic Content -->
+    <section id="home" class="hero dynamic-hero">
+        <div class="hero-background" id="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title" id="hero-title">Building a Better Tomorrow</h1>
+                <p class="hero-subtitle" id="hero-subtitle">Together, we can create positive change for our community and future generations.</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number" id="supporters-count">15,247</span>
+                        <span class="stat-label">Supporters</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="volunteers-count">892</span>
+                        <span class="stat-label">Volunteers</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="events-count">47</span>
+                        <span class="stat-label">Events</span>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="/volunteer" class="btn btn-primary btn-large" id="main-cta">Join the Campaign</a>
+                    <a href="/platform" class="btn btn-secondary btn-large" id="secondary-cta">Learn Platform</a>
+                    <button class="btn btn-outline btn-large" id="watch-video">
+                        <span class="btn-icon">▶</span>
+                        Watch Campaign Video
+                    </button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-media" id="hero-media">
+                    <img src="/assets/images/hero-placeholder.jpg" alt="Campaign Hero" id="hero-img" style="display: none;">
+                    <div class="hero-placeholder" id="hero-placeholder">
+                        <div class="placeholder-content">
+                            <h3>Dynamic Campaign Media</h3>
+                            <p>Professional photos and videos will be displayed here</p>
+                            <small>Replace with actual campaign media</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Social Proof Badges -->
+                <div class="social-proof" id="social-proof">
+                    <div class="endorsement-badge">
+                        <span class="badge-icon">🏆</span>
+                        <span class="badge-text">Endorsed by Local Leaders</span>
+                    </div>
+                    <div class="rating-badge">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-text">4.9/5 Community Rating</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Newsletter Signup -->
+    <section class="newsletter-quick" id="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h3>Stay Updated on the Campaign</h3>
+                    <p>Get the latest news, events, and policy updates delivered to your inbox</p>
+                </div>
+                <form class="newsletter-form" id="quick-newsletter">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+                <div class="newsletter-stats">
+                    <span id="newsletter-count">3,247</span> people have subscribed
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Issues Preview -->
+    <section class="issues-preview" id="issues-preview">
+        <div class="container">
+            <div class="section-header">
+                <h2>Key Campaign Issues</h2>
+                <p>Our commitment to addressing the most important challenges facing our community</p>
+            </div>
+            <div class="issues-grid" id="issues-grid">
+                <!-- Dynamic content will be loaded here -->
+                <div class="issue-card">
+                    <div class="issue-icon">🏥</div>
+                    <h3>Healthcare Access</h3>
+                    <p>Ensuring affordable, quality healthcare for all families</p>
+                    <a href="/platform#healthcare" class="issue-link">Learn More →</a>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-icon">🎓</div>
+                    <h3>Education Excellence</h3>
+                    <p>Investing in our schools and supporting teachers</p>
+                    <a href="/platform#education" class="issue-link">Learn More →</a>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-icon">💼</div>
+                    <h3>Economic Growth</h3>
+                    <p>Creating jobs and supporting local businesses</p>
+                    <a href="/platform#economy" class="issue-link">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Campaign Updates -->
+    <section class="campaign-updates" id="campaign-updates">
+        <div class="container">
+            <div class="section-header">
+                <h2>Latest Campaign Updates</h2>
+                <p>Stay informed with the most recent news and events</p>
+            </div>
+            <div class="updates-grid" id="updates-grid">
+                <!-- Dynamic updates will be loaded here -->
+                <article class="update-card">
+                    <div class="update-date">March 20, 2026</div>
+                    <h3>Town Hall Meeting Success</h3>
+                    <p>Over 200 community members joined our discussion on education policy...</p>
+                    <a href="/events" class="update-link">Read More →</a>
+                </article>
+                <article class="update-card">
+                    <div class="update-date">March 18, 2026</div>
+                    <h3>Healthcare Policy Proposal</h3>
+                    <p>Announced comprehensive plan to expand healthcare access...</p>
+                    <a href="/platform" class="update-link">Read More →</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What People Are Saying</h2>
+                <p>Hear from community members who support our vision</p>
+            </div>
+            <div class="testimonials-slider" id="testimonials-slider">
+                <div class="testimonial active">
+                    <div class="testimonial-content">
+                        <p>"Finally, a candidate who listens to our concerns and has practical solutions for our community's challenges."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="/assets/images/testimonial-1.jpg" alt="Sarah M." onerror="this.style.display='none'">
+                            <div class="avatar-placeholder">SM</div>
+                        </div>
+                        <div class="author-info">
+                            <div class="author-name">Sarah M.</div>
+                            <div class="author-title">Local Business Owner</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta-section" id="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Make a Difference?</h2>
+                <p>Join thousands of supporters who are working to create positive change in our community</p>
+                <div class="cta-buttons">
+                    <a href="/volunteer" class="btn btn-primary btn-large">Volunteer Today</a>
+                    <a href="/donate" class="btn btn-secondary btn-large">Donate Now</a>
+                    <a href="/events" class="btn btn-outline btn-large">Find Events</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dynamic Contact Form Modal -->
+    <div class="modal" id="contact-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Get in Touch</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <form id="quick-contact-form" class="contact-form">
+                <div class="form-group">
+                    <input type="text" name="firstName" placeholder="First Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="lastName" placeholder="Last Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <select name="interest">
+                        <option value="">I'm interested in...</option>
+                        <option value="volunteering">Volunteering</option>
+                        <option value="donating">Making a Donation</option>
+                        <option value="event">Attending Events</option>
+                        <option value="information">General Information</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" placeholder="Your message..." rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" id="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h4 id="footer-campaign-name">Vote for Change</h4>
+                    <p id="footer-campaign-description">Building a better tomorrow for our community.</p>
+                    <div class="social-links" id="social-links">
+                        <!-- Dynamic social links will be added here -->
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Campaign</h4>
+                        <ul>
+                            <li><a href="/about">About</a></li>
+                            <li><a href="/platform">Platform</a></li>
+                            <li><a href="/events">Events</a></li>
+                            <li><a href="/contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Get Involved</h4>
+                        <ul>
+                            <li><a href="/volunteer">Volunteer</a></li>
+                            <li><a href="/donate">Donate</a></li>
+                            <li><a href="/events">Events</a></li>
+                            <li><a href="#newsletter-section">Newsletter</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="/press">Press Kit</a></li>
+                            <li><a href="/privacy">Privacy Policy</a></li>
+                            <li><a href="/terms">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    <p>&copy; 2026 Vote for Change Campaign. All rights reserved.</p>
+                    <p><small>Paid for by Vote for Change Campaign Committee</small></p>
+                </div>
+                <div class="footer-marketing">
+                    <p><small>Professional campaign website by <a href="#" id="marketing-firm-link" target="_blank">Blue Ocean Strategies</a></small></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Marketing Firm Badge -->
+    <div class="marketing-firm-badge" id="marketing-badge" onclick="openMarketingInfo()">
+        <div class="powered-by">Powered by</div>
+        <div class="firm-name" id="firm-name">Blue Ocean Strategies</div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/config.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/analytics.js"></script>
+    <script src="/js/dynamic.js"></script>
+    <script src="/js/main.js"></script>
+    
+    <!-- UTM Parameter Tracking -->
+    <script>
+        // Capture UTM parameters for analytics
+        const urlParams = new URLSearchParams(window.location.search);
+        const utmData = {
+            utm_source: urlParams.get('utm_source'),
+            utm_medium: urlParams.get('utm_medium'),
+            utm_campaign: urlParams.get('utm_campaign'),
+            utm_term: urlParams.get('utm_term'),
+            utm_content: urlParams.get('utm_content')
+        };
+        
+        // Store in session storage for form submissions
+        sessionStorage.setItem('utmData', JSON.stringify(utmData));
+    </script>
+
+    <!-- Schema.org Event Structured Data for Campaign Events -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "Campaign Town Hall Meeting",
+        "description": "Join us for a community discussion on local issues",
+        "startDate": "2026-03-25T19:00:00",
+        "endDate": "2026-03-25T21:00:00",
+        "location": {
+            "@type": "Place",
+            "name": "Community Center",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "456 Community Ave",
+                "addressLocality": "Springfield",
+                "addressRegion": "IL",
+                "postalCode": "62701",
+                "addressCountry": "US"
+            }
+        },
+        "organizer": {
+            "@type": "PoliticalOrganization",
+            "name": "Vote for Change Campaign"
+        }
+    }
+    </script>
+</body>
+</html>
