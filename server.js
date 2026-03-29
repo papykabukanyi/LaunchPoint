@@ -1688,6 +1688,46 @@ async function sendApprovalEmail(to, fullName, username, tempPassword, workEmail
     }
 }
 
+async function sendRegistrationReceivedEmail(to, fullName) {
+    const html = `
+    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#0f1729;color:#e2e8f0;padding:40px;border-radius:16px">
+        <div style="text-align:center;margin-bottom:32px">
+            <div style="font-size:48px;margin-bottom:12px">🚀</div>
+            <h1 style="color:#4db8ff;margin:0">LaunchPoint DM</h1>
+            <p style="color:#94a3b8;margin-top:8px">Admin Access Request Received</p>
+        </div>
+        <p>Hello ${fullName},</p>
+        <p>Thank you for requesting admin access to the <strong style="color:#4db8ff">LaunchPoint DM</strong> platform.</p>
+        <p>Your request has been received and is currently <strong style="color:#f4a832">under review</strong>. Our team will evaluate your application and get back to you shortly.</p>
+        <div style="background:#1a2540;border:1px solid #2d3a5c;border-radius:12px;padding:20px;margin:24px 0">
+            <p style="margin:0 0 10px"><strong>What happens next?</strong></p>
+            <ul style="margin:0;padding-left:20px;color:#94a3b8">
+                <li>Our team reviews your request</li>
+                <li>You'll receive an email and text message once a decision is made</li>
+                <li>If approved, your login credentials will be sent to this email</li>
+            </ul>
+        </div>
+        <p>If you have any questions, please contact your campaign manager.</p>
+        <p>— LaunchPoint DM</p>
+        <p style="color:#64748b;font-size:11px;margin-top:32px;border-top:1px solid #1e2d4a;padding-top:16px">LaunchPoint DM — Digital Marketing Platform</p>
+    </div>`;
+
+    if (process.env.RESEND_API_KEY) {
+        try {
+            await transporter.sendMail({
+                from: process.env.RESEND_FROM || 'LaunchPoint DM <hello@launchpoint-dm.com>',
+                to,
+                subject: '📬 Your LaunchPoint DM Admin Request Has Been Received',
+                html
+            });
+        } catch (e) {
+            console.error('Registration received email error:', e.message);
+        }
+    } else {
+        console.log(`[REGISTRATION EMAIL] To: ${to} | Name: ${fullName}`);
+    }
+}
+
 async function sendRejectionEmail(to, fullName, reason) {
     const html = `
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#0f1729;color:#e2e8f0;padding:40px;border-radius:16px">
@@ -1792,6 +1832,8 @@ app.post('/api/admin/register',
                     console.error('Registrant SMS confirmation error:', smsErr.message);
                 }
             }
+            // Send confirmation email to the registrant
+            await sendRegistrationReceivedEmail(email, fullName);
             res.json({ success: true, message: 'Registration request submitted. You will be notified by email once reviewed.' });
         } catch (err) {
             console.error('Registration error:', err);
