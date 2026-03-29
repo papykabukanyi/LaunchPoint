@@ -22,6 +22,9 @@ const app = express();
 const PORT = process.env.PORT || 3300;
 const JWT_SECRET = process.env.JWT_SECRET || 'your-super-secret-jwt-key-change-this';
 
+// Trust Railway's reverse proxy (fixes express-rate-limit X-Forwarded-For error)
+app.set('trust proxy', 1);
+
 // Enhanced Middleware Setup
 app.use(helmet({
     contentSecurityPolicy: false, // Allow inline styles and scripts for development
@@ -107,7 +110,7 @@ const upload = multer({
 // PostgreSQL connection pool
 const pool = new Pool(
     process.env.DATABASE_URL
-        ? { connectionString: process.env.DATABASE_URL, ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false }
+        ? { connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } }
         : {
             host: process.env.PGHOST || 'localhost',
             port: parseInt(process.env.PGPORT || '5432'),
