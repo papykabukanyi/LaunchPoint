@@ -108,9 +108,13 @@ const upload = multer({
 });
 
 // PostgreSQL connection pool
+// Normalize postgresql:// -> postgres:// for pg-connection-string compatibility
+const rawDbUrl = process.env.DATABASE_URL || '';
+const dbUrl = rawDbUrl.replace(/^postgresql:\/\//, 'postgres://');
+
 const pool = new Pool(
-    process.env.DATABASE_URL
-        ? { connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } }
+    dbUrl
+        ? { connectionString: dbUrl, ssl: { rejectUnauthorized: false } }
         : {
             host: process.env.PGHOST || 'localhost',
             port: parseInt(process.env.PGPORT || '5432'),
@@ -126,7 +130,7 @@ pool.connect().then(client => {
     initializeDatabase();
 }).catch(err => {
     console.error('PostgreSQL connection error:', err.message);
-    console.error('Make sure PostgreSQL is running and .env credentials are correct.');
+    console.error('Make sure DATABASE_URL is set in Railway environment variables.');
 });
 
 // Initialize Database Tables (PostgreSQL)
